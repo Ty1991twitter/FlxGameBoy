@@ -8,7 +8,7 @@ class Main
 {
     public static function main()
     {
-        GBA.romBytes = File.getBytes('roms/Tetris.gb');
+        GB.romBytes = File.getBytes('roms/Tetris.gb');
 
         trace(getGameTitle());
         trace(getRomSize());
@@ -19,13 +19,13 @@ class Main
 
     static function readEntryPoint()
     {
-        GBA.readOpCode(0x0100); // SHould be NOP
-        GBA.readOpCode(0x0101); // Should be JP
+        GB.readOpCode(0x0100); // SHould be NOP
+        GB.readOpCode(0x0101); // Should be JP
     }
 
     static function getOldLicensee():String
     {
-        var licenseee:Int = GBA.romBytes.get(0x014B);
+        var licenseee:Int = GB.romBytes.get(0x014B);
 
         var licens = switch (licenseee)
         {
@@ -43,14 +43,14 @@ class Main
 
     static function getGameTitle():String
     {
-        return GBA.romBytes.getString(0x0134, 15);
+        return GB.romBytes.getString(0x0134, 15);
     }
 
   
     // gets in KByte
     static function getRomSize():Int
     {
-        var sizeBit:Int = GBA.romBytes.get(0x0148); // returns value between $00 and $08 at this address
+        var sizeBit:Int = GB.romBytes.get(0x0148); // returns value between $00 and $08 at this address
 
         sizeBit += 1;
         sizeBit *= 32;
