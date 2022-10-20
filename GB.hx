@@ -1,7 +1,7 @@
 import haxe.io.Bytes;
 using StringTools;
 
-class GBA
+class GB
 {
 
     static var programCounter:Int;
